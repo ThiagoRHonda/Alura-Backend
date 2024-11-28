@@ -38,7 +38,7 @@ const app = express();
 app.use(express.static("uploads"));
 routes(app);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Servidor escutando...");
 });
 
