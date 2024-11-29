@@ -8,6 +8,7 @@ import {
   listarTodosLivros,
   postarNovoLivro,
   atualizarNovoPost,
+  listarPost,
 } from "../controlers/postscontroler.js";
 
 // Configura o armazenamento do Multer para uploads de imagens no Windows
@@ -34,6 +35,7 @@ const routes = (app) => {
   app.use(cors(corsOptions));
 
   app.get("/posts", listarTodosPosts);
+  app.get("/posts/:id", listarPost);
   app.post("/posts", postarNovoPost);
   app.post("/upload", upload.single("imagem"), uploadImagem);
   app.put("/upload/:id", atualizarNovoPost);

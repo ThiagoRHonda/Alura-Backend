@@ -2,6 +2,7 @@ import {
   getTodosPosts,
   criarPost,
   atualizarPost,
+  getPost,
 } from "../models/postsmodels.js";
 import gerarDescricaoComGemini from "../services/geminiservice.js";
 import fs from "fs";
@@ -15,6 +16,16 @@ const lerLivros = () => {
 export async function listarTodosPosts(req, res) {
   const posts = await getTodosPosts();
   res.status(200).json(posts);
+}
+
+export async function listarPost(req, res) {
+  const id = req.params.id;
+  const post = await getPost(id);
+  if (!post) {
+    res.status(404).json({ Erro: "Post nao encontrado" });
+  } else {
+    res.status(200).json(post);
+  }
 }
 
 export async function postarNovoPost(req, res) {

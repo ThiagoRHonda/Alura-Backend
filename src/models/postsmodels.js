@@ -10,6 +10,14 @@ export async function getTodosPosts() {
   return conexao.db("imersao-instabytes").collection("posts").find().toArray();
 }
 
+export async function getPost(id) {
+  const objId = ObjectId.createFromHexString(id);
+  return conexao
+    .db("imersao-instabytes")
+    .collection("posts")
+    .findOne({ _id: new ObjectId(objId) });
+}
+
 export async function criarPost(novopost) {
   //const db = conexao.db("imersao-instabytes");
   //const colecao = db.collection("posts");
